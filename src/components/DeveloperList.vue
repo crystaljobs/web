@@ -2,7 +2,7 @@
   .developer-list
     template(v-if="preloadedDevelopers.length > 0")
       template(v-for="developer in preloadedDevelopers")
-        developer(:developer="developer", :displayAdminForm="displayAdminForm")
+        developer(:developer="developer", :displayAdminForm="displayAdminForm", :key="developer")
     spinner(v-else)
 </template>
 
