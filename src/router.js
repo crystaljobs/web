@@ -20,6 +20,10 @@ export default new Router({
     {
       path: '/oauth/callback/github',
       component: GitHubOAuth
+    },
+    {
+      path: '/admin',
+      component: () => import(/* webpackChunkName: "admin" */ './views/Admin.vue')
     }
   ]
 })

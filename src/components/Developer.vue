@@ -1,25 +1,34 @@
 <template lang="pug">
   .developer
     a.avatar(:href="'https://github.com/' + developer.github.username")
-      img(:src="developer.gitHubData.avatar_url")
+      img(:src="developer.github.data.avatar_url")
     .information
-      .name {{developer.gitHubData.name}}&nbsp;
+      .name {{developer.github.data.name || 'Unnamed'}}&nbsp;
       a.github-link(:href="'https://github.com/' + developer.github.username") @{{developer.github.username}}
-      //- router-link.edit(to="/dashboard", v-if="id == developer.id") edit
-      .about {{developer.about}}
+      .about
+        template(v-if="developer.about")
+          | {{developer.about}}
+        i(v-else) No description
       .website
-        a(:href="developer.website") {{developer.website}}
+        a(v-if="developer.website", :href="developer.website") {{developer.website}}
+        i(v-else) No website
+      template(v-if="displayAdminForm")
+        admin-form(:developer="developer")
 </template>
 
 <script>
-  import { mapState } from 'vuex'
+  import AdminForm from '@/components/Developer/AdminForm.vue'
 
   export default {
-    props: {
-      developer: Object
+    components: {
+      AdminForm
     },
-    computed: {
-      ...mapState(['id'])
+    props: {
+      developer: Object,
+      displayAdminForm: {
+        type: Boolean,
+        default: false
+      }
     }
   }
 </script>
@@ -71,6 +80,8 @@
 
   .website
     display: inline-block
-    margin-top: 0.3rem
-    text-transform: lowercase
+    margin-top: 0.25rem
+
+    a
+      text-transform: lowercase
 </style>

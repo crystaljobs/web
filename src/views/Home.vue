@@ -7,7 +7,7 @@
 
 <script>
   import Hero from '@/components/Home/Hero.vue'
-  import DeveloperList from '@/components/Home/DeveloperList.vue'
+  import DeveloperList from '@/components/DeveloperList.vue'
 
   export default {
     components: {

@@ -7,7 +7,7 @@
       .developer
         img.avatar(:src="developer.github.data.avatar_url")
         .information
-          .name {{developer.github.data.name}}&nbsp;
+          .name {{developer.github.data.name || 'Unnamed'}}&nbsp;
           a.github-username(:href="'https://github.com/' + developer.github.username") @{{developer.github.username}}
           form(@submit.prevent="onSubmit")
             textarea.about(
@@ -91,7 +91,7 @@
           display: this.developer.display
         }, {
           headers: {
-            'Authorization': 'Token ' + window.localStorage.getItem('jwt')
+            'Authorization': 'Token ' + this.jwt
           }
         }).then((response) => {
           console.info('Successfully updated the developer!')
