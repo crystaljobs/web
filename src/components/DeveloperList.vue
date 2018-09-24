@@ -2,7 +2,7 @@
   .developer-list
     template(v-if="preloadedDevelopers.length > 0")
       template(v-for="developer in preloadedDevelopers")
-        developer(:developer="developer", :displayAdminForm="displayAdminForm", :key="developer")
+        developer(:developer="developer", :displayAdminForm="displayAdminForm", :key="developerId(developer)")
     spinner(v-else)
 </template>
 
@@ -13,6 +13,7 @@
   import { mapState } from 'vuex'
 
   import { url as apiUrl } from '@/api'
+  import { objectId } from '@/utils'
   import Developer from '@/components/Developer.vue'
 
   const github = new GitHub()
@@ -67,20 +68,20 @@
           return developer.github.data
         })
       }
+    },
+    methods: {
+      developerId (developer) {
+        return objectId(developer)
+      }
     }
   }
 </script>
 
 <style lang="sass" scoped>
-  .developer-list
-    padding: 1rem
-    display: flex
-    flex-direction: column
-    justify-content: center
-
-    min-height: calc(100% - 2rem)
-
   .developer
-    &:not(:first-of-type)
-      margin-top: 1rem
+    width: calc(100% - 2rem)
+    padding: 1rem
+
+    &:not(:last-of-type)
+      border-bottom: 1px solid rgba(0, 0, 0, 0.075)
 </style>

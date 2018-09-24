@@ -1,49 +1,81 @@
 <template lang="pug">
   .home
-    aside
-      hero
+    .display-settings
+      .entity-tabs
+        .tab.selected Developers
+        .tab.disabled Jobs
+      .filters
+        .filter
+          .title Sort by:&nbsp;
+          .pseudo-select Crystal Jobs registration date
     developer-list
 </template>
 
 <script>
-  import Hero from '@/components/Home/Hero.vue'
   import DeveloperList from '@/components/DeveloperList.vue'
 
   export default {
     components: {
-      Hero,
       DeveloperList
     }
   }
 </script>
 
 <style lang="sass" scoped>
-  $aside-width: 30%
+  @import "@/assets/styles/variables.sass"
 
   .home
-    @media (min-width: 768px)
-      height: 0
-      min-height: 100%
+    display: flex
+    flex-direction: column
+    align-items: center
+    padding: 1rem
 
-      aside
-        width: calc(#{$aside-width} - 2rem)
-        height: calc(100% - 2rem)
-        position: fixed
-        display: flex
-        align-items: center
-        padding: 1rem
-        border-right: 1px solid rgba(0, 0, 0, 0.05)
+    > *
+      width: 100%
+      max-width: $appropriate-width
+      background-color: white
+      border-radius: 5px
 
-        .hero
-          text-align: right
-          margin-top: -0.5rem
+      &:not(:first-child)
+        margin-top: 1rem
 
-      .developer-list
-        margin-left: $aside-width
-        width: calc(100% - #{$aside-width} - 2rem)
+  .entity-tabs
+    padding: 0 1rem
 
-    @media (max-width: 768px)
-      aside
-        padding: 1rem
-        border-bottom: 1px solid rgba(0, 0, 0, 0.05)
+    .tab
+      display: inline-block
+      width: calc(50% - 2rem)
+      height: 100%
+      padding: 1rem
+      text-align: center
+      cursor: pointer
+
+      &.selected
+        color: $color-primary
+        font-weight: bold
+        border-bottom: 2px solid $color-primary
+
+      &.disabled
+        cursor: not-allowed
+        opacity: 0.5
+
+  .filters
+    padding: 1rem
+
+    .filter
+      > *
+        display: inline-block
+
+        &:not(:first-child)
+          margin-left: 0.5rem
+
+  .pseudo-select
+    padding: 0.5rem 0.75rem
+    font-size: 0.9rem
+
+    background-color: rgba(0, 0, 0, 0.05)
+    border: 1px solid rgba(0, 0, 0, 0.15)
+    border-radius: 3px
+
+    cursor: not-allowed
 </style>

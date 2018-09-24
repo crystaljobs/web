@@ -41,7 +41,7 @@
         this.setID(response.data.developer.id)
         this.setJWT(response.data.jwt)
 
-        this.$router.push({ path: '/dashboard' })
+        this.$router.push({ path: '/profile' })
       })
     },
     methods: {

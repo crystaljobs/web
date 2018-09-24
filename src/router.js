@@ -14,8 +14,8 @@ export default new Router({
       component: Home
     },
     {
-      path: '/dashboard',
-      component: () => import(/* webpackChunkName: "dashboard" */ './views/Dashboard.vue')
+      path: '/profile',
+      component: () => import(/* webpackChunkName: "profile" */ './views/Profile.vue')
     },
     {
       path: '/oauth/callback/github',

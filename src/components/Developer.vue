@@ -4,14 +4,18 @@
       img(:src="developer.github.data.avatar_url")
     .information
       .name {{developer.github.data.name || 'Unnamed'}}&nbsp;
-      a.github-link(:href="'https://github.com/' + developer.github.username") @{{developer.github.username}}
       .about
         template(v-if="developer.about")
           | {{developer.about}}
         i(v-else) No description
-      .website
-        a(v-if="developer.website", :href="developer.website") {{developer.website}}
-        i(v-else) No website
+      .contacts
+        .contact
+          i.feather.feather-github
+          a(:href="githubURL") @{{developer.github.username}}
+        template(v-if="developer.website")
+          .contact
+            i.feather.feather-external-link
+            a(:href="developer.website") {{developer.website}}
       template(v-if="displayAdminForm")
         admin-form(:developer="developer")
 </template>
@@ -29,59 +33,67 @@
         type: Boolean,
         default: false
       }
+    },
+    computed: {
+      githubURL () {
+        return 'https://github.com/' + this.developer.github.username
+      }
     }
   }
 </script>
 
 <style lang="sass" scoped>
-  .developer
-    display: flex
-    align-items: center
-    width: 100%
+  @import "@/assets/styles/mixins/media.sass"
 
-  .avatar, .information
-    display: inline-block
+  .developer
+    display: grid
+    grid-template-columns: 6rem auto
+    grid-column-gap: 0.75rem
+
+    +tablet
+      grid-template-columns: 4rem auto
 
   .avatar
     line-height: 0
 
   img
-    @media (min-width: 768px)
-      height: 7rem
-    @media (max-width: 768px)
-      height: 4rem
-
+    height: 6rem
     border-radius: 3px
 
+    +tablet
+      height: 4rem
+
   .information
-    margin-left: 1rem
+    display: flex
+    flex-direction: column
+    justify-content: center
 
   .name
     font-weight: bold
     font-size: 1.3rem
-    display: inline-block
-
-  .edit
-    background-color: #4caf50
-    color: white
-    padding: 0.15rem 0.3rem
-    border-radius: 3px
-    font-weight: bold
-    margin-left: 0.5rem
 
   .about
-    @media (min-width: 768px)
-      font-size: 1.1rem
-    @media (max-width: 768px)
-      font-size: 0.9rem
-
     margin-top: 0.1rem
-    display: block
 
-  .website
-    display: inline-block
+    +non-tablet
+      font-size: 1.1rem
+
+  .contacts
+    display: flex
     margin-top: 0.25rem
 
-    a
-      text-transform: lowercase
+    +tablet
+      flex-direction: column
+
+  .contact
+    i
+      margin-right: 0.15rem
+      opacity: 0.75
+
+    &:not(:first-of-type)
+      +tablet
+        margin-top: 0.25rem
+
+      +non-tablet
+        margin-left: 0.5rem
 </style>

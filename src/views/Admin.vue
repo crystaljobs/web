@@ -23,10 +23,20 @@
 </script>
 
 <style lang="sass" scoped>
+  @import "@/assets/styles/variables.sass"
+
   .admin
-    padding: 1rem
     display: flex
-    width: calc(100% - 2rem)
-    align-items: center
     flex-direction: column
+    align-items: center
+    padding: 1rem
+
+    > *
+      width: 100%
+      max-width: $appropriate-width
+      background-color: white
+      border-radius: 5px
+
+      &:not(:first-child)
+        margin-top: 1rem
 </style>

@@ -31,5 +31,10 @@ export default new Vuex.Store({
       context.commit('setID', null)
       context.commit('setJWT', null)
     }
+  },
+  getters: {
+    loggedIn (state) {
+      return state.id
+    }
   }
 })

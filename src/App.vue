@@ -1,35 +1,43 @@
 <template lang="pug">
   #app
-    //- .bar
+    app-header
     router-view
+    app-footer
 </template>
 
-<style lang="sass">
-  @import url('https://fonts.googleapis.com/css?family=Roboto:400,700')
-  @import '~pretty-checkbox/src/pretty-checkbox.scss'
+<script>
+  import Header from '@/components/Header'
+  import Footer from '@/components/Footer'
 
-  $main-color: #0a83d8
-  $bar-height: 5px
+  export default {
+    components: {
+      AppHeader: Header,
+      AppFooter: Footer
+    }
+  }
+</script>
+
+<style lang="sass">
+  @import '~pretty-checkbox/src/pretty-checkbox.scss'
+  @import "@/assets/styles/index.sass"
+  @import "@/assets/styles/mixins/media.sass"
+  @import "@/assets/styles/variables.sass"
 
   html, body
-    padding: 0
-    margin: 0
-    height: 100%
     min-height: 100vh
+    margin: 0
+    padding: 0
 
   body
-    font-family: 'Roboto', sans-serif
-    -webkit-font-smoothing: antialiased
-    -moz-osx-font-smoothing: grayscale
-    color: rgba(0, 0, 0, 0.85)
+    background-color: rgba(0, 0, 0, 0.03)
 
   #app
-    height: 100%
-    min-height: 100%
+    position: relative
+    min-height: 100vh
 
-  a
-    text-decoration: none
+    +tablet
+      padding-bottom: calc(#{$footer-height-tablet})
 
-    &, &:visited
-      color: $main-color
+    +non-tablet
+      padding-bottom: calc(#{$footer-height})
 </style>
