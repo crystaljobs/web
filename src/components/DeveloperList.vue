@@ -51,6 +51,7 @@
 
       axios.get(apiUrl + '/developers', { headers }).then((response) => {
         this.developers = response.data.developers
+        this.$emit('loadedDevelopers', response.data.developers)
 
         for (let i = 0; i < this.developers.length; i++) {
           let developer = this.developers[i]

@@ -2,7 +2,7 @@
   .home
     .display-settings
       .entity-tabs
-        .tab.selected Developers
+        .tab.selected Developers {{pDevelopersCount}}
         .tab.disabled Jobs
       .filters
         .filter
@@ -10,7 +10,7 @@
           select(v-model="sortBy")
             option(value="crystalJobsRegistration") Crystal Jobs registration
             option(value="githubFollowers") GitHub followers
-    developer-list(:sortBy="sortBy")
+    developer-list(:sortBy="sortBy", @loadedDevelopers="loadedDevelopers")
 </template>
 
 <script>
@@ -19,7 +19,8 @@
   export default {
     data () {
       return {
-        sortBy: 'githubFollowers'
+        sortBy: 'githubFollowers',
+        developersCount: null
       }
     },
     components: {
@@ -28,6 +29,17 @@
     mounted () {
       let sortBy = window.localStorage.getItem('developerSortBy')
       this.sortBy = sortBy || 'githubFollowers'
+    },
+    computed: {
+      pDevelopersCount () {
+        if (!this.developersCount) return ''
+        return `(${this.developersCount})`
+      }
+    },
+    methods: {
+      loadedDevelopers (developers) {
+        this.developersCount = developers.length
+      }
     },
     watch: {
       sortBy (newValue) {
