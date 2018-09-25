@@ -3,7 +3,11 @@
     a.avatar(:href="'https://github.com/' + developer.github.username")
       img(:src="developer.github.data.avatar_url")
     .information
-      .name {{developer.github.data.name || 'Unnamed'}}&nbsp;
+      .intro
+        .name {{developer.github.data.name || 'Unnamed'}}&nbsp;
+        .github-followers(title="GitHub followers")
+          i.feather.feather-users
+          |  {{developer.github.data.followers}}
       .about
         template(v-if="developer.about")
           | {{developer.about}}
@@ -67,6 +71,9 @@
     display: flex
     flex-direction: column
     justify-content: center
+
+  .intro > *
+    display: inline-block
 
   .name
     font-weight: bold

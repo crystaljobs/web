@@ -1,7 +1,7 @@
 <template lang="pug">
   .developer-list
-    template(v-if="preloadedDevelopers.length > 0")
-      template(v-for="developer in preloadedDevelopers")
+    template(v-if="sortedDevelopers.length > 0")
+      template(v-for="developer in sortedDevelopers")
         developer(:developer="developer", :displayAdminForm="displayAdminForm", :key="developerId(developer)")
     spinner(v-else)
 </template>
@@ -27,6 +27,10 @@
       displayAdminForm: {
         type: Boolean,
         default: false
+      },
+      sortBy: {
+        type: String,
+        required: true
       }
     },
     data () {
@@ -63,9 +67,18 @@
     },
     computed: {
       ...mapState(['jwt']),
-      preloadedDevelopers () {
+      sortedDevelopers () {
         return this.developers.filter((developer) => {
           return developer.github.data
+        }).sort((a, b) => {
+          switch (this.sortBy) {
+          case 'crystalJobsRegistration':
+            return a.createdAt - b.createdAt
+          case 'githubFollowers':
+            return b.github.data.followers - a.github.data.followers
+          default:
+            throw new Error(`Unknown sortBy '${this.sortBy}'`)
+          }
         })
       }
     },

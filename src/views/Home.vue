@@ -7,14 +7,21 @@
       .filters
         .filter
           .title Sort by:&nbsp;
-          .pseudo-select Crystal Jobs registration date
-    developer-list
+          select(v-model="sortBy")
+            option(value="crystalJobsRegistration") Crystal Jobs registration
+            option(value="githubFollowers") GitHub followers
+    developer-list(:sortBy="sortBy")
 </template>
 
 <script>
   import DeveloperList from '@/components/DeveloperList.vue'
 
   export default {
+    data () {
+      return {
+        sortBy: 'githubFollowers'
+      }
+    },
     components: {
       DeveloperList
     }
@@ -69,13 +76,11 @@
         &:not(:first-child)
           margin-left: 0.5rem
 
-  .pseudo-select
+  select
     padding: 0.5rem 0.75rem
     font-size: 0.9rem
 
-    background-color: rgba(0, 0, 0, 0.05)
+    background-color: white
     border: 1px solid rgba(0, 0, 0, 0.15)
     border-radius: 3px
-
-    cursor: not-allowed
 </style>

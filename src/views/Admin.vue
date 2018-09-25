@@ -1,6 +1,6 @@
 <template lang="pug">
   .admin
-    developer-list(:authorize="true", :displayAdminForm="true")
+    developer-list(:authorize="true", :displayAdminForm="true", :sortBy="'crystalJobsRegistration'")
 </template>
 
 <script>
