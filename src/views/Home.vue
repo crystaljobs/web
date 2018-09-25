@@ -24,6 +24,15 @@
     },
     components: {
       DeveloperList
+    },
+    mounted () {
+      let sortBy = window.localStorage.getItem('developerSortBy')
+      this.sortBy = sortBy || 'githubFollowers'
+    },
+    watch: {
+      sortBy (newValue) {
+        window.localStorage.setItem('developerSortBy', newValue)
+      }
     }
   }
 </script>
