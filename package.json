@@ -88,9 +88,12 @@
       "function-url-quotes": "always",
       "font-weight-notation": "named-where-possible",
       "font-family-name-quotes": "always-unless-keyword",
-      "font-family-no-missing-generic-family-keyword": [true, {
-        "severity": "warning"
-      }],
+      "font-family-no-missing-generic-family-keyword": [
+        true,
+        {
+          "severity": "warning"
+        }
+      ],
       "comment-whitespace-inside": "always",
       "comment-empty-line-before": null,
       "at-rule-no-vendor-prefix": true,
@@ -119,9 +122,12 @@
         }
       ],
       "selector-list-comma-newline-after": "always-multi-line",
-      "no-descending-specificity": [true, {
-        "severity": "warning"
-      }]
+      "no-descending-specificity": [
+        true,
+        {
+          "severity": "warning"
+        }
+      ]
     }
   },
   "postcss": {
