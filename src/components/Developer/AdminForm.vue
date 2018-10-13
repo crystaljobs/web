@@ -36,7 +36,7 @@
           status: this.developer.status
         }, {
           headers: {
-            'Authorization': 'Token ' + this.jwt
+            'Authorization': 'Bearer ' + this.jwt
           }
         }).then((response) => {
           console.info('Successfully updated the developer!')

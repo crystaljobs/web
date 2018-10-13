@@ -46,7 +46,7 @@
       let headers = {}
 
       if (this.authorize) {
-        headers['Authorization'] = 'Token ' + this.jwt
+        headers['Authorization'] = 'Bearer ' + this.jwt
       }
 
       axios.get(apiUrl + '/developers', { headers }).then((response) => {

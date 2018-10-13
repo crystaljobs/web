@@ -1,6 +1,6 @@
 {
   "name": "crystaljobs-web",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "private": true,
   "scripts": {
     "serve": "vue-cli-service serve",
@@ -15,6 +15,7 @@
     "@vue/eslint-config-standard": "^3.0.1",
     "axios": "^0.18.0",
     "github-api": "^3.0.0",
+    "jwt-decode": "^2.2.0",
     "node-sass": "^4.9.0",
     "pretty-checkbox-vue": "^1.1.9",
     "pug": "^2.0.3",

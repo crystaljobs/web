@@ -69,7 +69,7 @@
     mounted () {
       axios.get(apiUrl + '/developers/' + this.id, {
         headers: {
-          'Authorization': 'Token ' + this.jwt
+          'Authorization': 'Bearer ' + this.jwt
         }
       }).then((response) => {
         let developer = response.data.developer
@@ -99,7 +99,7 @@
           display: this.developer.display
         }, {
           headers: {
-            'Authorization': 'Token ' + this.jwt
+            'Authorization': 'Bearer ' + this.jwt
           }
         }).then((response) => {
           console.info('Successfully updated the developer!')

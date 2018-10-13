@@ -6,7 +6,6 @@
     span
       | Source code available at&nbsp;
       a(href="https://github.com/crystaljobs") github.com/crystaljobs
-    span Published under MIT License
     span All rights reserved © 2018
 </template>
 

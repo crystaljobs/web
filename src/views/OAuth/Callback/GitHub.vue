@@ -4,6 +4,7 @@
 </template>
 
 <script>
+  import jwtDecode from 'jwt-decode'
   import Spinner from 'vue-simple-spinner'
   import axios from 'axios'
   import { mapMutations } from 'vuex'
@@ -38,7 +39,7 @@
           state: this.state
         }
       }).then((response) => {
-        this.setID(response.data.developer.id)
+        this.setID(jwtDecode(response.data.jwt).developer.id)
         this.setJWT(response.data.jwt)
 
         this.$router.push({ path: '/profile' })
