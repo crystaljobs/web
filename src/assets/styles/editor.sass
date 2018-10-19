@@ -1,0 +1,38 @@
+.ProseMirror
+  &:focus
+    outline: none
+
+  p.is-empty:first-child:before
+    float: left
+    height: 0
+    content: 'The job description'
+    color: black
+    opacity: 0.5
+    pointer-events: none
+
+  h1, h2, h3
+    margin-top: 1rem
+    margin-bottom: 1rem
+
+  blockquote
+    margin-left: 0
+    padding: 0.5rem 1rem
+    border-left: 4px solid black
+
+    > p
+      margin: 0
+
+  img
+    max-width: 100%
+
+  ul
+    list-style-type: square
+
+  ul, ol
+    padding-left: calc(1rem - 1px)
+
+    li
+      line-height: 1
+
+      &:not(:first-of-type)
+        margin-top: -0.5rem

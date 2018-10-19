@@ -1,6 +1,4 @@
-# Crystal Jobs Web Application
-
-TODO: Add description
+# crystal_jobs
 
 ## Project setup
 ```
@@ -9,15 +7,15 @@ yarn install
 
 ### Compiles and hot-reloads for development
 ```
-yarn serve
+yarn run serve
 ```
 
 ### Compiles and minifies for production
 ```
-yarn build
+yarn run build
 ```
 
 ### Lints and fixes files
 ```
-yarn lint
+yarn run lint
 ```

@@ -1,107 +1,120 @@
 <template lang="pug">
   .home
-    .display-settings
-      .entity-tabs
-        .tab.selected Developers {{pDevelopersCount}}
-        .tab.disabled Jobs
-      .filters
-        .filter
-          .title Sort by:&nbsp;
-          select(v-model="sortBy")
-            option(value="crystalJobsRegistration") Crystal Jobs registration
-            option(value="githubFollowers") GitHub followers
-    developer-list(:sortBy="sortBy", @loadedDevelopers="loadedDevelopers")
+    .hero
+      vue-particles.particles(
+        color="#ffffff"
+        :particleOpacity="1"
+        shapeType="edge"
+        :hoverEffect="false"
+        :clickEffect="false"
+        :moveSpeed="2"
+        :particleSize="3"
+      )
+      h1
+        | Crystal Jobs
+        sup β
+      h2
+        | The perfect place to find a&nbsp;
+        a(href="https://crystal-lang.org") Crystal
+        |  developer
+    .cta
+      .text Hire a Crystal developer.
+      router-link(to='/jobs/new').button.post Post a Job
+      .right
+    .jobs(v-if="jobs.length > 0")
+      job(
+        v-for="job in jobs"
+        :job="job"
+        :key="job.id"
+      )
+    .no-jobs(v-else-if="loaded")
+      p
+        i.feather-slash
+        |  No jobs available at the moment.&nbsp;
+        router-link(to='/jobs/new') Add yours!
+    spinner(v-else)
 </template>
 
 <script>
-  import DeveloperList from '@/components/DeveloperList.vue'
+  import { indexJobs } from '@/services/api'
+  import Job from '@/components/Job.vue'
+  import Spinner from '@/components/Spinners/Simple.vue'
 
   export default {
+    components: {
+      Job,
+      Spinner
+    },
     data () {
       return {
-        sortBy: 'githubFollowers',
-        developersCount: null
+        loaded: false,
+        jobs: []
       }
-    },
-    components: {
-      DeveloperList
     },
     mounted () {
-      let sortBy = window.localStorage.getItem('developerSortBy')
-      this.sortBy = sortBy || 'githubFollowers'
-    },
-    computed: {
-      pDevelopersCount () {
-        if (!this.developersCount) return ''
-        return `(${this.developersCount})`
-      }
-    },
-    methods: {
-      loadedDevelopers (developers) {
-        this.developersCount = developers.length
-      }
-    },
-    watch: {
-      sortBy (newValue) {
-        window.localStorage.setItem('developerSortBy', newValue)
-      }
+      indexJobs().then((jobs) => {
+        this.jobs = jobs
+        this.loaded = true
+      })
     }
   }
 </script>
 
 <style lang="sass" scoped>
-  @import "@/assets/styles/variables.sass"
+  @import '@/assets/styles/variables.sass'
 
   .home
     display: flex
     flex-direction: column
     align-items: center
-    padding: 1rem
 
-    > *
+  .hero
+    position: relative
+    display: flex
+    flex-direction: column
+    justify-content: center
+    align-items: center
+
+    width: 100%
+    height: 20rem
+
+    color: white
+    background-color: black
+
+    .particles
+      position: absolute
+      z-index: 0
       width: 100%
-      max-width: $appropriate-width
-      background-color: white
-      border-radius: 5px
-
-      &:not(:first-child)
-        margin-top: 1rem
-
-  .entity-tabs
-    padding: 0 1rem
-
-    .tab
-      display: inline-block
-      width: calc(50% - 2rem)
       height: 100%
-      padding: 1rem
-      text-align: center
-      cursor: pointer
 
-      &.selected
-        color: $color-primary
-        font-weight: bold
-        border-bottom: 2px solid $color-primary
+    a
+      color: white
+      text-decoration: underline
 
-      &.disabled
-        cursor: not-allowed
-        opacity: 0.5
+    h1, h2
+      z-index: 1
+      margin: 0
+      font-weight: inherit
+      background-color: black
 
-  .filters
+    h1
+      font-size: 4rem
+
+  .cta
+    display: flex
+    align-items: center
+    padding: 2rem
+
+    .text
+      margin-right: 1rem
+      font-size: 1.1rem
+
+  .jobs
+    width: 100%
+    max-width: 50rem
     padding: 1rem
 
-    .filter
-      > *
-        display: inline-block
-
-        &:not(:first-child)
-          margin-left: 0.5rem
-
-  select
-    padding: 0.5rem 0.75rem
-    font-size: 0.9rem
-
-    background-color: white
-    border: 1px solid rgba(0, 0, 0, 0.15)
-    border-radius: 3px
+  .no-jobs
+    padding: 0 1rem
+    border: $border
 </style>

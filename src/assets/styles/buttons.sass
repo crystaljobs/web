@@ -1,38 +1,4 @@
-@import "./variables.sass"
+@import './extensions/button'
 
 .button
-  padding: 0.75rem
-
-  font-weight: bold
-  font-size: 1rem
-
-  border: none
-  border-radius: 4px
-
-  cursor: pointer
-
-  &.small
-    padding: 0.5rem
-    font-size: 0.9rem
-
-  &.success
-    color: white
-    background-color: $color-success
-
-  &.link
-    color: $color-primary
-    font-weight: inherit
-    background-color: transparent
-    border-radius: 0
-
-  &:disabled
-    color: white
-    background-color: rgba(0, 0, 0, 0.3)
-    cursor: not-allowed
-
-  &.progress
-    background-color: lightblue
-    cursor: not-allowed
-
-    &:before
-      content: "⏳ "
+  @extend %button

@@ -1,7 +1,6 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import Home from './views/Home.vue'
-import GitHubOAuth from './views/OAuth/Callback/GitHub.vue'
 
 Vue.use(Router)
 
@@ -14,16 +13,19 @@ export default new Router({
       component: Home
     },
     {
-      path: '/profile',
-      component: () => import(/* webpackChunkName: "profile" */ './views/Profile.vue')
+      path: '/jobs/new',
+      name: 'Post a new Job',
+      component: () => import(/* webpackChunkName: "jobs-new" */ './views/Jobs/New.vue')
     },
     {
-      path: '/oauth/callback/github',
-      component: GitHubOAuth
+      path: '/jobs/activate',
+      name: 'Activate Job',
+      component: () => import(/* webpackChunkName: "jobs-activate" */ './views/Jobs/Activate.vue')
     },
     {
-      path: '/admin',
-      component: () => import(/* webpackChunkName: "admin" */ './views/Admin.vue')
+      path: '/jobs/edit',
+      name: 'Edit Job',
+      component: () => import(/* webpackChunkName: "jobs-edit" */ './views/Jobs/Edit.vue')
     }
   ]
 })
