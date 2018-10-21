@@ -78,7 +78,6 @@
     width: 100%
 
     &:first-of-type
-      margin-top: -1rem
       border-top: $border
 
   .preview

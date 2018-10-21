@@ -17,22 +17,51 @@
         | The perfect place to find a&nbsp;
         a(href="https://crystal-lang.org") Crystal
         |  developer
-    .cta
-      .text Hire a Crystal developer.
-      router-link(to='/jobs/new').button.post Post a Job
-      .right
-    .jobs(v-if="jobs.length > 0")
-      job(
-        v-for="job in jobs"
-        :job="job"
-        :key="job.id"
-      )
-    .no-jobs(v-else-if="loaded")
-      p
-        i.feather-slash
-        |  No jobs available at the moment.&nbsp;
-        router-link(to='/jobs/new') Add yours!
-    spinner(v-else)
+    .content
+      .cta
+        .text Hire a Crystal developer.
+        router-link(to='/jobs/new').button.post Post a Job
+        .right
+      .jobs(v-if="jobs.length > 0")
+        job(
+          v-for="job in jobs"
+          :job="job"
+          :key="job.id"
+        )
+      .no-jobs(v-else-if="loaded")
+        p
+          i.feather-slash
+          |  No jobs available at the moment.&nbsp;
+          router-link(to='/jobs/new') Add yours!
+      spinner(v-else)
+      .email-subscription
+        form(
+          action='https://crystaljobs.us19.list-manage.com/subscribe/post?u=f612593f913e152a61c5dadf9&id=15e49b415f'
+          method='post'
+          name='mc-embedded-subscribe-form'
+          target='_blank'
+          novalidate=''
+        )
+          p Never miss a Job.
+          input.email(
+            type='email'
+            value=''
+            name='EMAIL'
+            placeholder='Email address'
+            required
+          )
+          div(style='position: absolute; left: -5000px;', aria-hidden='true')
+            input(
+              type='text'
+              name='b_f612593f913e152a61c5dadf9_15e49b415f'
+              tabindex='-1'
+              value=''
+            )
+          input.button(
+            type='submit'
+            value='Subscribe to Newsletter'
+            name='subscribe'
+          )
 </template>
 
 <script>
@@ -100,10 +129,19 @@
     h1
       font-size: 4rem
 
+  .content
+    display: flex
+    flex-direction: column
+    align-items: center
+    width: 100%
+    padding: 1rem
+
+    > *:not(:first-child)
+      margin-top: 1rem
+
   .cta
     display: flex
     align-items: center
-    padding: 2rem
 
     .text
       margin-right: 1rem
@@ -112,9 +150,21 @@
   .jobs
     width: 100%
     max-width: 50rem
-    padding: 1rem
 
   .no-jobs
     padding: 0 1rem
     border: $border
+
+  .email-subscription
+    display: flex
+
+    form
+      p
+        display: inline-block
+
+      & > *:not(:first-child)
+        margin-left: 1rem
+
+      input[type='email']
+        padding: calc(1rem - 1px)
 </style>
