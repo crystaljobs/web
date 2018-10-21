@@ -197,6 +197,12 @@
         required: true
       }
     },
+    data () {
+      return {
+        applyEmailValue: this.job.applyEmail,
+        applyURLValue: this.job.applyURL
+      }
+    },
     computed: {
       vStatusIcon () {
         switch (this.job.status.toLowerCase()) {
@@ -229,7 +235,11 @@
       },
       job: {
         handler (newValue) {
-          this.checkForEitherApply()
+          if (newValue.applyEmail !== this.applyEmailValue || newValue.applyURL !== this.applyURLValue) {
+            this.applyEmailValue = newValue.applyEmail
+            this.applyURLValue = newValue.applyURL
+            this.checkForEitherApply()
+          }
         },
         deep: true
       }
@@ -252,8 +262,12 @@
             id: 'jobApplyURLEitherId'
           })
         } else {
-          this.errors.removeById('jobApplyEmailEitherId')
-          this.errors.removeById('jobApplyURLEitherId')
+          if (this.errors.firstById('jobApplyEmailEitherId')) {
+            this.errors.removeById('jobApplyEmailEitherId')
+          }
+          if (this.errors.firstById('jobApplyURLEitherId')) {
+            this.errors.removeById('jobApplyURLEitherId')
+          }
         }
       }
     }
