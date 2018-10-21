@@ -87,6 +87,7 @@
 
   p
     margin: 0
+    margin-top: 1rem
 
   .error
     padding: 1rem
