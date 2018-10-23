@@ -17,6 +17,9 @@
         | The perfect place to find a&nbsp;
         a(href="https://crystal-lang.org") Crystal
         |  developer
+      a.twitter(href="https://twitter.com/crystaljobsorg", target="_blank")
+        i.feather-twitter
+        |  @crystaljobsorg
     .content
       .cta
         .text Hire a Crystal developer.
@@ -120,7 +123,7 @@
       color: white
       text-decoration: underline
 
-    h1, h2
+    h1, h2, a
       z-index: 1
       margin: 0
       font-weight: inherit
@@ -128,6 +131,12 @@
 
     h1
       font-size: 4rem
+
+    .twitter
+      margin-top: 0.5rem
+      padding: 0
+      font-size: 1.25rem
+      text-decoration: none
 
   .content
     display: flex
