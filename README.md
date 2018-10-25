@@ -1,21 +1,11 @@
-# crystal_jobs
+<img align="right" width="150" height="150" src="https://avatars0.githubusercontent.com/u/42606971?s=150&v=4">
 
-## Project setup
-```
-yarn install
-```
+# Crystal Jobs
 
-### Compiles and hot-reloads for development
-```
-yarn run serve
-```
+The perfect place to find a [Crystal](https://crystal-lang.org/) developer.
 
-### Compiles and minifies for production
-```
-yarn run build
-```
+## Frontend
 
-### Lints and fixes files
-```
-yarn run lint
-```
+[![Created with Vue](https://img.shields.io/badge/created%20with-vue-45b883.svg?style=flat-square)](https://vuejs.org/)
+
+This repository contains reference code for https://crystaljobs.org frontend.
