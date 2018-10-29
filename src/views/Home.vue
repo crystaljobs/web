@@ -65,6 +65,9 @@
             value='Subscribe to Newsletter'
             name='subscribe'
           )
+      .github
+        | Reference source code is available at&nbsp;
+        a(href="https://github.com/crystaljobs") github.com/crystaljobs
 </template>
 
 <script>
